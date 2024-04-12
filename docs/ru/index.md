@@ -1,4 +1,4 @@
-# project_name Docs Ru
+# Recognition cats and dogs Docs Ru
 
 ## Установка
 
