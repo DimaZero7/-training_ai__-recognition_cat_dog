@@ -15,12 +15,12 @@ from choices import TargetsChoice
 
 class DataPreparation:
     def _get_train_image_path_target(self) -> pd.DataFrame:
-        path_cat = Path(settings.IMAGE_PATH_TRAIN_CAT)
-        path_dog = Path(settings.IMAGE_PATH_TRAIN_DOG)
+        cat_images_path = Path(settings.IMAGE_PATH_TRAIN_CAT)
+        dog_images_path = Path(settings.IMAGE_PATH_TRAIN_DOG)
 
         paths_and_targets = [
-            (path_cat, TargetsChoice.CAT),
-            (path_dog, TargetsChoice.DOG),
+            (cat_images_path, TargetsChoice.CAT),
+            (dog_images_path, TargetsChoice.DOG),
         ]
 
         full_paths = []
@@ -82,12 +82,12 @@ class DataPreparation:
         )
 
     def _get_vlidate_image_path_target(self) -> pd.DataFrame:
-        path_cat = Path(settings.IMAGE_PATH_VALIDATE_CAT)
-        path_dog = Path(settings.IMAGE_PATH_VALIDATE_DOG)
+        cat_images_path = Path(settings.IMAGE_PATH_TRAIN_CAT)
+        dog_images_path = Path(settings.IMAGE_PATH_TRAIN_DOG)
 
         paths_and_targets = [
-            (path_cat, TargetsChoice.CAT),
-            (path_dog, TargetsChoice.DOG),
+            (cat_images_path, TargetsChoice.CAT),
+            (cat_images_path, TargetsChoice.DOG),
         ]
 
         full_paths = []

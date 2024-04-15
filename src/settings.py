@@ -5,10 +5,10 @@ BASE_DIR = Path(__file__).resolve().parent
 
 
 IMAGE_PATH_TRAIN_CAT = os.path.join(
-    BASE_DIR, "dataset", "train", "cat"
+    BASE_DIR, "dataset", "training", "cat"
 )
 IMAGE_PATH_TRAIN_DOG = os.path.join(
-    BASE_DIR, "dataset", "train", "dog"
+    BASE_DIR, "dataset", "training", "dog"
 )
 
 IMAGE_PATH_VALIDATE_CAT = os.path.join(
