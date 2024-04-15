@@ -8,6 +8,8 @@
 1) [Установка](README.md#установка)
 2) [Набор данных](README.md#набор-данных)
 3) [Структура проекта внутри src](README.md#структура-проекта-внутри-директории-src)
+4) [Запуск на GPU](README.md#запуск-на-gpu)
+
 
 
 ## Установка
@@ -52,7 +54,28 @@
 - `model_run.py`: Запускает распознавание файлов из папки `dataset/validate` на основе модели в файле `model.h5`.
 - `model_training.py`: Запускает обучение сети на основе данных из `dataset/train`.
 
+## Запуск на GPU
 
+Чтобы запустить нейросеть на GPU, необходимо выполнить следующие шаги:
 
+1) Создать контейнер в Docker, используя следующую команду:
+```bash
+docker run -it --gpus all -v absolute_path/src:/app/ --name container_name tensorflow/tensorflow:latest-gpu
+```
 
+2) Войти в контейнер:
+```bash
+docker exec -it container_name bash
+```
 
+3) Перейти в директорию `app`:
+```bash
+cd app
+```
+
+4) Установить все необходимые пакеты с помощью pip:
+```bash
+pip install package_name
+```
+
+5) Запустить обучение или выполнение нейронной сети. Она будет выполнена на GPU.
