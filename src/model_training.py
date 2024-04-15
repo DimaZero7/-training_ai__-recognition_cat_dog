@@ -7,7 +7,7 @@ from matplotlib import pyplot as plt
 from services import DataPreparation, initialize_deep_learning_model
 
 model = initialize_deep_learning_model()
-train_data, test_data = DataPreparation().get_train_and_test()
+train_data, test_data = DataPreparation().get_training_and_test()
 
 model_history = model.fit(
     train_data,

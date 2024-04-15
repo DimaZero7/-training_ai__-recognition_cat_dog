@@ -14,9 +14,9 @@ from choices import TargetsChoice
 
 
 class DataPreparation:
-    def _get_train_image_path_target(self) -> pd.DataFrame:
-        cat_images_path = Path(settings.IMAGE_PATH_TRAIN_CAT)
-        dog_images_path = Path(settings.IMAGE_PATH_TRAIN_DOG)
+    def _get_training_image_path_target(self) -> pd.DataFrame:
+        cat_images_path = Path(settings.IMAGE_PATH_TRAINING_CAT)
+        dog_images_path = Path(settings.IMAGE_PATH_TRAINING_DOG)
 
         paths_and_targets = [
             (cat_images_path, TargetsChoice.CAT),
@@ -41,15 +41,15 @@ class DataPreparation:
 
         return dataset
 
-    def get_train_and_test(
+    def get_training_and_test(
         self,
     ) -> Tuple[DataFrameIterator, DataFrameIterator]:
-        dataset = self._get_train_image_path_target()
-        dataset_train, dataset_test = train_test_split(
+        dataset = self._get_training_image_path_target()
+        dataset_training, dataset_test = train_test_split(
             dataset, test_size=0.2, random_state=42
         )
 
-        train_datagen = ImageDataGenerator(
+        training_datagen = ImageDataGenerator(
             rotation_range=15,
             rescale=1.0 / 255,
             shear_range=0.1,
@@ -58,13 +58,18 @@ class DataPreparation:
             width_shift_range=0.1,
             height_shift_range=0.1,
         )
-        train_data_generator = train_datagen.flow_from_dataframe(
-            dataframe=dataset_train,
-            x_col="image_path",
-            y_col="target",
-            target_size=(settings.IMAGE_WIDTH, settings.IMAGE_HEIGHT),
-            class_mode="binary",
-            batch_size=32,
+        training_data_generator = (
+            training_datagen.flow_from_dataframe(
+                dataframe=dataset_training,
+                x_col="image_path",
+                y_col="target",
+                target_size=(
+                    settings.IMAGE_WIDTH,
+                    settings.IMAGE_HEIGHT,
+                ),
+                class_mode="binary",
+                batch_size=32,
+            )
         )
 
         test_datagen = ImageDataGenerator(rescale=1.0 / 255)
@@ -77,17 +82,17 @@ class DataPreparation:
         )
 
         return (
-            train_data_generator,
+            training_data_generator,
             test_data_generator,
         )
 
     def _get_vlidate_image_path_target(self) -> pd.DataFrame:
-        cat_images_path = Path(settings.IMAGE_PATH_TRAIN_CAT)
-        dog_images_path = Path(settings.IMAGE_PATH_TRAIN_DOG)
+        cat_images_path = Path(settings.IMAGE_PATH_TRAINING_CAT)
+        dog_images_path = Path(settings.IMAGE_PATH_TRAINING_DOG)
 
         paths_and_targets = [
             (cat_images_path, TargetsChoice.CAT),
-            (cat_images_path, TargetsChoice.DOG),
+            (dog_images_path, TargetsChoice.DOG),
         ]
 
         full_paths = []

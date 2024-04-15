@@ -4,10 +4,10 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent
 
 
-IMAGE_PATH_TRAIN_CAT = os.path.join(
+IMAGE_PATH_TRAINING_CAT = os.path.join(
     BASE_DIR, "dataset", "training", "cat"
 )
-IMAGE_PATH_TRAIN_DOG = os.path.join(
+IMAGE_PATH_TRAINING_DOG = os.path.join(
     BASE_DIR, "dataset", "training", "dog"
 )
 
